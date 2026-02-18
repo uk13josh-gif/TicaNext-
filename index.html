@@ -3,283 +3,202 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TicaNext - Future IT Solutions</title>
+  <title>TicaNext - Talentica Style</title>
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Poppins",sans-serif;
     }
 
-    body {
-      background: black;
-      color: white;
-      overflow-x: hidden;
+    body{
+      background:#f9fbff;
+      color:#111;
+      overflow-x:hidden;
     }
 
-    /* 🌌 Animated Background */
-    .background {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -1;
+    /* Navbar */
+    header{
+      width:100%;
+      padding:18px 80px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      background:white;
+      box-shadow:0 2px 15px rgba(0,0,0,0.08);
     }
 
-    .circle {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: rgba(0, 217, 255, 0.2);
-      border-radius: 50%;
-      filter: blur(60px);
-      animation: float 8s infinite alternate ease-in-out;
+    .logo{
+      font-size:24px;
+      font-weight:700;
+      color:#0066ff;
     }
 
-    .circle:nth-child(1) { top: 10%; left: 20%; }
-    .circle:nth-child(2) {
-      top: 50%;
-      left: 70%;
-      width: 300px;
-      height: 300px;
-      animation-duration: 10s;
-    }
-    .circle:nth-child(3) {
-      top: 80%;
-      left: 30%;
-      width: 250px;
-      height: 250px;
-      animation-duration: 12s;
+    nav a{
+      margin-left:25px;
+      text-decoration:none;
+      color:#222;
+      font-weight:500;
+      transition:0.3s;
     }
 
-    @keyframes float {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-80px); }
-    }
-
-    /* Header */
-    header {
-      width: 100%;
-      padding: 15px 80px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(12px);
-      transition: 0.3s;
-    }
-
-    /* Sticky Shadow */
-    header.scrolled {
-      box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
-    }
-
-    /* Logo */
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo img {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      border: 2px solid #00d9ff;
-    }
-
-    .logo h1 {
-      font-size: 24px;
-      color: #00d9ff;
-      font-weight: 700;
-    }
-
-    nav {
-      display: flex;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 25px;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #00d9ff;
-    }
-
-    /* Mobile Menu Button */
-    .menu-btn {
-      display: none;
-      font-size: 30px;
-      cursor: pointer;
-      color: #00d9ff;
+    nav a:hover{
+      color:#0066ff;
     }
 
     /* Hero */
-    .hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 120px 80px;
+    .hero{
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:140px 80px;
+      background:linear-gradient(to right,#0066ff,#00c6ff);
+      color:white;
     }
 
-    .hero-content {
-      max-width: 650px;
+    .hero-text{
+      max-width:550px;
     }
 
-    .hero-content h2 {
-      font-size: 55px;
-      font-weight: 700;
-      line-height: 1.2;
+    .hero-text h1{
+      font-size:55px;
+      font-weight:700;
+      line-height:1.2;
     }
 
-    .hero-content span {
-      color: #00d9ff;
+    .hero-text p{
+      margin:20px 0;
+      font-size:18px;
+      opacity:0.9;
     }
 
-    .hero-content p {
-      margin: 20px 0;
-      font-size: 18px;
-      opacity: 0.8;
+    .btn{
+      display:inline-block;
+      padding:12px 28px;
+      background:white;
+      color:#0066ff;
+      border-radius:8px;
+      font-weight:600;
+      text-decoration:none;
+      transition:0.3s;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 12px 30px;
-      background: linear-gradient(90deg, #00d9ff, #0077ff);
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
+    .btn:hover{
+      background:#eaf2ff;
     }
 
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00d9ff;
+    .hero-img{
+      width:420px;
     }
 
-    section {
-      padding: 100px 80px;
+    /* Sections */
+    section{
+      padding:90px 80px;
     }
 
-    /* Services */
-    .services, .team, .contact {
-      text-align: center;
+    h2{
+      font-size:40px;
+      text-align:center;
+      margin-bottom:60px;
+      color:#0066ff;
     }
 
-    h2 {
-      font-size: 40px;
-      margin-bottom: 50px;
-      color: #00d9ff;
+    /* Grid Cards */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
     }
 
-    .service-box, .team-box {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 25px;
+    .card{
+      background:white;
+      padding:30px;
+      border-radius:15px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      transition:0.3s;
     }
 
-    .card, .team-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 30px;
-      border-radius: 20px;
-      border: 1px solid rgba(0, 217, 255, 0.2);
-      transition: 0.3s;
+    .card:hover{
+      transform:translateY(-8px);
     }
 
-    .card:hover, .team-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 25px rgba(0, 217, 255, 0.6);
+    .card h3{
+      margin-bottom:15px;
+      color:#0066ff;
     }
 
-    .team-card img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      border: 3px solid #00d9ff;
-      margin-bottom: 15px;
+    /* Team */
+    .team-card{
+      text-align:center;
     }
 
-    /* Contact Form */
-    form {
-      max-width: 500px;
-      margin: auto;
+    .team-card img{
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      margin-bottom:15px;
     }
 
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: none;
-      outline: none;
+    /* Contact */
+    form{
+      max-width:500px;
+      margin:auto;
+      text-align:center;
     }
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(90deg, #00d9ff, #0077ff);
-      border: none;
-      color: white;
-      font-size: 18px;
-      border-radius: 10px;
-      cursor: pointer;
+    input,textarea{
+      width:100%;
+      padding:12px;
+      margin:10px 0;
+      border-radius:8px;
+      border:1px solid #ccc;
     }
 
-    button:hover {
-      box-shadow: 0 0 20px #00d9ff;
+    button{
+      width:100%;
+      padding:12px;
+      background:#0066ff;
+      border:none;
+      color:white;
+      font-size:18px;
+      border-radius:8px;
+      cursor:pointer;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: black;
-      opacity: 0.7;
+    button:hover{
+      background:#004ecc;
     }
 
-    /* 📱 Mobile Responsive Navbar */
-    @media (max-width: 768px) {
-      header {
-        padding: 15px 25px;
+    footer{
+      text-align:center;
+      padding:20px;
+      background:#111;
+      color:white;
+    }
+
+    /* Mobile Responsive */
+    @media(max-width:768px){
+      header{
+        padding:15px 25px;
       }
 
-      nav {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.95);
-        flex-direction: column;
-        text-align: center;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease;
+      .hero{
+        flex-direction:column;
+        text-align:center;
       }
 
-      nav a {
-        margin: 15px 0;
-        font-size: 18px;
-      }
-
-      nav.active {
-        max-height: 300px;
-      }
-
-      .menu-btn {
-        display: block;
+      .hero-img{
+        margin-top:40px;
+        width:300px;
       }
     }
   </style>
@@ -287,87 +206,131 @@
 
 <body>
 
-  <!-- Background -->
-  <div class="background">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
-
-  <!-- Header -->
-  <header id="header">
-    <div class="logo">
-      <img src="logo.png" alt="Logo">
-      <h1>TicaNext</h1>
-    </div>
-
-    <!-- Toggle Button -->
-    <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">☰</div>
-
-    <!-- Navbar -->
-    <nav id="navbar">
-      <a href="#home" onclick="closeMenu()">Home</a>
-      <a href="#services" onclick="closeMenu()">Services</a>
-      <a href="#team" onclick="closeMenu()">Team</a>
-      <a href="#contact" onclick="closeMenu()">Contact</a>
+  <!-- Navbar -->
+  <header>
+    <div class="logo">TicaNext</div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#tech">Technologies</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <!-- Hero -->
-  <div class="hero" id="home">
-    <div class="hero-content">
-      <h2>Welcome to <span>TicaNext</span></h2>
-      <p>We provide futuristic IT solutions, AI Services and Digital Transformation.</p>
-      <a href="#services" class="btn">Explore Services</a>
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Innovative IT Solutions for Modern Business</h1>
+      <p>
+        TicaNext delivers enterprise software development, AI innovation,
+        and digital transformation like top IT companies.
+      </p>
+      <a href="#services" class="btn">Get Started</a>
     </div>
+
+    <img class="hero-img"
+      src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png"
+      alt="IT Illustration">
   </div>
 
   <!-- Services -->
-  <section class="services" id="services">
+  <section id="services">
     <h2>Our Services</h2>
-    <div class="service-box">
-      <div class="card"><h3>🚀 App Development</h3><p>Android & iOS apps using React Native.</p></div>
-      <div class="card"><h3>🤖 AI Solutions</h3><p>Smart automation tools & chatbots.</p></div>
-      <div class="card"><h3>🌐 Web Design</h3><p>Modern responsive futuristic websites.</p></div>
-      <div class="card"><h3>🔒 Cyber Security</h3><p>Secure systems and data protection.</p></div>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Enterprise Software</h3>
+        <p>Scalable solutions for startups and enterprise businesses.</p>
+      </div>
+
+      <div class="card">
+        <h3>AI & Automation</h3>
+        <p>Smart AI tools and automation for productivity growth.</p>
+      </div>
+
+      <div class="card">
+        <h3>Mobile & Web Apps</h3>
+        <p>Modern responsive apps with the latest technologies.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="why">
+    <h2>Why Choose TicaNext?</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3>🚀 Innovation First</h3>
+        <p>We build futuristic digital products using AI technologies.</p>
+      </div>
+
+      <div class="card">
+        <h3>💼 Enterprise Experience</h3>
+        <p>Trusted solutions for startups, SMEs, and enterprises.</p>
+      </div>
+
+      <div class="card">
+        <h3>⚡ Fast & Scalable Delivery</h3>
+        <p>Quick development, smooth deployment, scalable growth.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Technologies -->
+  <section id="tech">
+    <h2>Technologies We Use</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3>🌐 Frontend</h3>
+        <p>React.js, Next.js, HTML5, CSS3, Tailwind</p>
+      </div>
+
+      <div class="card">
+        <h3>📱 Mobile</h3>
+        <p>React Native, Flutter, Android, iOS</p>
+      </div>
+
+      <div class="card">
+        <h3>⚙ Backend</h3>
+        <p>Node.js, Python, Java, Firebase, REST APIs</p>
+      </div>
+
+      <div class="card">
+        <h3>☁ Cloud & DevOps</h3>
+        <p>AWS, Azure, GitHub, Docker, CI/CD</p>
+      </div>
+
     </div>
   </section>
 
   <!-- Team -->
-  <section class="team" id="team">
-    <h2>Meet Our Team</h2>
-    <div class="team-box">
-      <div class="team-card">
+  <section id="team">
+    <h2>Leadership Team</h2>
+    <div class="grid">
+
+      <div class="card team-card">
         <img src="1.jpg" alt="CEO">
         <h3>Akshit Joshi</h3>
-        <p>Chief Executive Officer (CEO)</p>
+        <p>CEO - Founder</p>
       </div>
 
-      <div class="team-card">
+      <div class="card team-card">
         <img src="2.jpg" alt="COO">
         <h3>Priyanshu Bhatt</h3>
-        <p>Chief Operating Officer (COO)</p>
+        <p>COO - Operations</p>
       </div>
 
-      <div class="team-card">
-        <img src="https://via.placeholder.com/90" alt="Developer">
-        <h3>Rohit Sharma</h3>
-        <p>Senior Developer</p>
-      </div>
-
-      <div class="team-card">
-        <img src="https://via.placeholder.com/90" alt="Designer">
-        <h3>Ananya Verma</h3>
-        <p>UI/UX Designer</p>
-      </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section class="contact" id="contact">
+  <section id="contact">
     <h2>Contact Us</h2>
-    <p>Let’s build something amazing together 🚀</p>
-
     <form>
       <input type="text" placeholder="Your Name" required>
       <input type="email" placeholder="Your Email" required>
@@ -378,38 +341,8 @@
 
   <!-- Footer -->
   <footer>
-    © 2026 TicaNext | All Rights Reserved
+    © 2026 TicaNext |
   </footer>
-
-  <!-- JavaScript -->
-  <script>
-    const navbar = document.getElementById("navbar");
-    const menuBtn = document.getElementById("menuBtn");
-    const header = document.getElementById("header");
-
-    function toggleMenu() {
-      navbar.classList.toggle("active");
-
-      if (navbar.classList.contains("active")) {
-        menuBtn.innerHTML = "✖";
-      } else {
-        menuBtn.innerHTML = "☰";
-      }
-    }
-
-    function closeMenu() {
-      navbar.classList.remove("active");
-      menuBtn.innerHTML = "☰";
-    }
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
-    });
-  </script>
 
 </body>
 </html>
