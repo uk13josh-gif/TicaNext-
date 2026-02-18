@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,6 +74,12 @@
       z-index: 1000;
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(12px);
+      transition: 0.3s;
+    }
+
+    /* Sticky Shadow */
+    header.scrolled {
+      box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
     }
 
     /* Logo */
@@ -97,6 +102,10 @@
       font-weight: 700;
     }
 
+    nav {
+      display: flex;
+    }
+
     nav a {
       color: white;
       text-decoration: none;
@@ -106,6 +115,14 @@
     }
 
     nav a:hover {
+      color: #00d9ff;
+    }
+
+    /* Mobile Menu Button */
+    .menu-btn {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
       color: #00d9ff;
     }
 
@@ -159,23 +176,23 @@
     }
 
     /* Services */
-    .services {
+    .services, .team, .contact {
       text-align: center;
     }
 
-    .services h2 {
+    h2 {
       font-size: 40px;
       margin-bottom: 50px;
       color: #00d9ff;
     }
 
-    .service-box {
+    .service-box, .team-box {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 25px;
     }
 
-    .card {
+    .card, .team-card {
       background: rgba(255, 255, 255, 0.05);
       padding: 30px;
       border-radius: 20px;
@@ -183,42 +200,7 @@
       transition: 0.3s;
     }
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 25px rgba(0, 217, 255, 0.6);
-    }
-
-    .card h3 {
-      margin-bottom: 15px;
-      color: #00d9ff;
-    }
-
-    /* Team Section */
-    .team {
-      text-align: center;
-    }
-
-    .team h2 {
-      font-size: 40px;
-      margin-bottom: 50px;
-      color: #00d9ff;
-    }
-
-    .team-box {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 25px;
-    }
-
-    .team-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 25px;
-      border-radius: 20px;
-      border: 1px solid rgba(0, 217, 255, 0.2);
-      transition: 0.3s;
-    }
-
-    .team-card:hover {
+    .card:hover, .team-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 0 25px rgba(0, 217, 255, 0.6);
     }
@@ -231,31 +213,10 @@
       margin-bottom: 15px;
     }
 
-    .team-card h3 {
-      color: #00d9ff;
-      margin-bottom: 5px;
-    }
-
-    .team-card p {
-      opacity: 0.8;
-      font-size: 15px;
-    }
-
-    /* Contact */
-    .contact {
-      text-align: center;
-    }
-
-    .contact h2 {
-      font-size: 40px;
-      margin-bottom: 20px;
-      color: #00d9ff;
-    }
-
+    /* Contact Form */
     form {
       max-width: 500px;
       margin: auto;
-      margin-top: 30px;
     }
 
     input, textarea {
@@ -265,7 +226,6 @@
       border-radius: 10px;
       border: none;
       outline: none;
-      font-size: 16px;
     }
 
     button {
@@ -275,7 +235,6 @@
       border: none;
       color: white;
       font-size: 18px;
-      font-weight: bold;
       border-radius: 10px;
       cursor: pointer;
     }
@@ -290,12 +249,45 @@
       background: black;
       opacity: 0.7;
     }
+
+    /* 📱 Mobile Responsive Navbar */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 25px;
+      }
+
+      nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        text-align: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+      }
+
+      nav a {
+        margin: 15px 0;
+        font-size: 18px;
+      }
+
+      nav.active {
+        max-height: 300px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Animated Background -->
+  <!-- Background -->
   <div class="background">
     <div class="circle"></div>
     <div class="circle"></div>
@@ -303,17 +295,21 @@
   </div>
 
   <!-- Header -->
-  <header>
+  <header id="header">
     <div class="logo">
       <img src="https://via.placeholder.com/45" alt="Logo">
       <h1>TicaNext</h1>
     </div>
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#team">Team</a>
-      <a href="#contact">Contact</a>
+    <!-- Toggle Button -->
+    <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">☰</div>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+      <a href="#home" onclick="closeMenu()">Home</a>
+      <a href="#services" onclick="closeMenu()">Services</a>
+      <a href="#team" onclick="closeMenu()">Team</a>
+      <a href="#contact" onclick="closeMenu()">Contact</a>
     </nav>
   </header>
 
@@ -330,10 +326,10 @@
   <section class="services" id="services">
     <h2>Our Services</h2>
     <div class="service-box">
-      <div class="card"><h3>🚀 App Development</h3><p>Android & iOS apps using React Native & Flutter.</p></div>
-      <div class="card"><h3>🤖 AI Solutions</h3><p>Smart automation tools and next-gen chatbots.</p></div>
-      <div class="card"><h3>🌐 Web Design</h3><p>Modern responsive websites with futuristic UI/UX.</p></div>
-      <div class="card"><h3>🔒 Cyber Security</h3><p>Secure systems, antivirus tools and protection.</p></div>
+      <div class="card"><h3>🚀 App Development</h3><p>Android & iOS apps using React Native.</p></div>
+      <div class="card"><h3>🤖 AI Solutions</h3><p>Smart automation tools & chatbots.</p></div>
+      <div class="card"><h3>🌐 Web Design</h3><p>Modern responsive futuristic websites.</p></div>
+      <div class="card"><h3>🔒 Cyber Security</h3><p>Secure systems and data protection.</p></div>
     </div>
   </section>
 
@@ -341,7 +337,6 @@
   <section class="team" id="team">
     <h2>Meet Our Team</h2>
     <div class="team-box">
-
       <div class="team-card">
         <img src="https://via.placeholder.com/90" alt="CEO">
         <h3>Akshit Joshi</h3>
@@ -356,8 +351,8 @@
 
       <div class="team-card">
         <img src="https://via.placeholder.com/90" alt="Developer">
-        <h3> Anurag Semwal</h3>
-        <p>Senior App Developer</p>
+        <h3>Rohit Sharma</h3>
+        <p>Senior Developer</p>
       </div>
 
       <div class="team-card">
@@ -365,7 +360,6 @@
         <h3>Ananya Verma</h3>
         <p>UI/UX Designer</p>
       </div>
-
     </div>
   </section>
 
@@ -386,6 +380,36 @@
   <footer>
     © 2026 TicaNext | All Rights Reserved
   </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const navbar = document.getElementById("navbar");
+    const menuBtn = document.getElementById("menuBtn");
+    const header = document.getElementById("header");
+
+    function toggleMenu() {
+      navbar.classList.toggle("active");
+
+      if (navbar.classList.contains("active")) {
+        menuBtn.innerHTML = "✖";
+      } else {
+        menuBtn.innerHTML = "☰";
+      }
+    }
+
+    function closeMenu() {
+      navbar.classList.remove("active");
+      menuBtn.innerHTML = "☰";
+    }
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+  </script>
 
 </body>
 </html>
